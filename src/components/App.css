@@ -2,16 +2,51 @@
   height: 100%;
 }
 
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+.App .image-cont {
+  height: 225px;
+
+  /* display: grid;
+  place-content: center; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+.App .image {
+  cursor: pointer;
+}
+
+.App .image,
+.App #imageModal img  {
+  height: inherit;
+  max-width: 100%;
+  width: auto;
+}
+
+/* .App #imageModalCloseBtn {
+  position: absolute;
+  right: 1rem;
+  filter: invert(1);
+  top: 1rem;
+} */
+
+.App #imageModal .modal-dialog  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App #imageModal .modal-content  {
+  width: auto;
+  height: auto;
+}
+.App #imageModal .modal-body  {
+  padding: 0;
+}
+.App #imageModal img  {
+  max-height: 70vh;
+}
+
+.App #app-loader-cont {
+  height: 5rem;
 }
