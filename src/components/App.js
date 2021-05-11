@@ -5,11 +5,12 @@ import Images from "./Images/Images";
 import { useGetImagesOnScroll, useSearchText } from "services/app.service";
 import OnScrollLoader from "./OnScrollLoader/OnScrollLoader";
 import SearchInput from "./SearchInput/SearchInput";
+import { TextSuggestionsContextWrap } from "./other/TextSuggestionsContextWrap/TextSuggestionsContextWrap";
 
 /**
  * Application: The main component
  */
-function App() {
+function AppMain() {
   const [modalImageUrl, setModalImageUrl] = useState("");
   const [text, setText] = useState("");
   const [search] = useSearchText(setText);
@@ -29,7 +30,7 @@ function App() {
         </section>
 
         <div className="py-5">
-          <Images images={images} setModalImageUrl={setModalImageUrl} />
+          <Images images={images} setModalImageUrl={setModalImageUrl} loading={loading} />
           <OnScrollLoader loading={loading} />
         </div>
 
@@ -37,6 +38,14 @@ function App() {
       </main>
     </div>
   );
+}
+
+function App() {
+  return (
+    <TextSuggestionsContextWrap>
+      <AppMain />
+    </TextSuggestionsContextWrap>
+  )
 }
 
 export default App;

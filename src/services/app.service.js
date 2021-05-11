@@ -1,7 +1,8 @@
 import { getImages } from "apis/flickr";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Subject } from "rxjs";
-import { debounceTime, map } from "rxjs/operators";
+import { debounceTime } from "rxjs/operators";
+import { TextSuggestionsContext } from "components/other/TextSuggestionsContextWrap/TextSuggestionsContextWrap";
 
 //return images and loading state and also on scroll return new images concatinated with old one
 export function useGetImagesOnScroll(text) {
@@ -64,16 +65,18 @@ export function useSearchText(setText) {
 
   const search = useCallback((text) => searchTermsC.current.next(text), []);
 
+  const textSuggestions = useContext(TextSuggestionsContext);
+
   useEffect(() => {
     let subs = searchTermsC.current
-      .pipe(
-        debounceTime(500),
-        map((term) => term.trim())
-      )
-      .subscribe((text) => setText(text));
+      .pipe(debounceTime(500))
+      .subscribe((text) => {
+        setText(text);
+        if (text) textSuggestions.changeState(text); //dont add empty string
+      });
 
     return () => subs.unsubscribe();
-  }, [setText]);
+  }, [setText, textSuggestions]);
 
   return [search];
 }
