@@ -1,0 +1,14 @@
+.Images .image-cont {
+  height: 225px;
+
+  /* display: grid;
+  place-items: center; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Images .image {
+  cursor: pointer;
+}

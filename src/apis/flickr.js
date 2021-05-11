@@ -20,10 +20,10 @@ function getRecentImages(page = 1) {
         .then(data => data.photos.photo)
 }
 
-function getImageUrl(photoID) {
-    return commonApiRecipe(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${CONFIG.API_KEY}&per_page=10&format=json&nojsoncallback=1&photo_id=${photoID}`)
+function getImageUrl(imageID) {
+    return commonApiRecipe(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${CONFIG.API_KEY}&per_page=10&format=json&nojsoncallback=1&photo_id=${imageID}`)
         .then(
-            data => ({ url: data.sizes.size[data.sizes.size.length - 1].source, id: photoID + new Date().getTime() })
+            data => ({ url: data.sizes.size[data.sizes.size.length - 1].source, id: imageID + new Date().getTime() })
         )
 }
 
@@ -32,9 +32,9 @@ function getImageUrl(photoID) {
 export function getImages(page) {
     return getRecentImages(page)
         .then(
-            photos => Promise.all(
-                photos.map(
-                    photo => getImageUrl(photo.id).catch(() => null) // #51021-72621 if photo cannot be fetched return null
+            images => Promise.all(
+                images.map(
+                    image => getImageUrl(image.id).catch(() => null) // #51021-72621 if image cannot be fetched return null
                 )
             )
         )

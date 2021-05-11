@@ -1,0 +1,15 @@
+.ImageModal .modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ImageModal .modal-content {
+  width: auto;
+  height: auto;
+}
+.ImageModal .modal-body {
+  padding: 0;
+}
+.ImageModal img {
+  max-height: 70vh;
+}
