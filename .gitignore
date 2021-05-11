@@ -24,6 +24,3 @@ yarn-error.log*
 
 # credentials
 .key
-
-# http
-.http

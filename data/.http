@@ -1,0 +1,97 @@
+
+# {
+#   "photos": {
+#     "page": 1,
+#     "pages": 100,
+#     "perpage": 10,
+#     "total": 1000,
+#     "photo": [
+#       {
+#         "id": "51169014372",
+#         "owner": "191676684@N02",
+#         "secret": "1a5800b8ce",
+#         "server": "65535",
+#         "farm": 66,
+#         "title": "Musique Pub Renault Captur 2021 :",
+#         "ispublic": 1,
+#         "isfriend": 0,
+#         "isfamily": 0
+#       },
+#     ]
+#   },
+#   "stat": "ok"
+# }
+
+GET https://api.flickr.com/services/rest/
+        ?method=flickr.photos.getRecent
+        &api_key=5875df7a2fd923dbbfee5ced7ff6cfed
+        &per_page=10
+        &format=json
+        &nojsoncallback=1
+
+###
+
+# {
+#   "photos": {
+#     "page": 1,
+#     "pages": 1,
+#     "perpage": 10,
+#     "total": "1",
+#     "photo": [
+#       {
+#         "id": "25919737777",
+#         "owner": "13148856@N05",
+#         "secret": "05f7df3377",
+#         "server": "4774",
+#         "farm": 5,
+#         "title": "frost side story (aka hoth side story)",
+#         "ispublic": 1,
+#         "isfriend": 0,
+#         "isfamily": 0
+#       }
+#     ]
+#   },
+#   "stat": "ok"
+# }
+
+GET https://api.flickr.com/services/rest/
+        ?method=flickr.photos.search
+        &api_key=5875df7a2fd923dbbfee5ced7ff6cfed
+        &per_page=10
+        &format=json
+        &nojsoncallback=1
+        &media=photos
+        &text=frost side story (aka hoth side story)
+
+###
+
+
+# {
+#   "sizes": {
+#     "canblog": 0,
+#     "canprint": 0,
+#     "candownload": 1,
+#     "size": [
+#       {
+#         "label": "Original",
+#         "width": 1280,
+#         "height": 720,
+#         "source": "https:\/\/live.staticflickr.com\/65535\/51169014372_33339b7936_o.png",
+#         "url": "https:\/\/www.flickr.com\/photos\/suisnous\/51169014372\/sizes\/o\/",
+#         "media": "photo"
+#       }
+#     ]
+#   },
+#   "stat": "ok"
+# }
+
+GET https://api.flickr.com/services/rest/
+        ?method=flickr.photos.getSizes
+        &api_key=5875df7a2fd923dbbfee5ced7ff6cfed
+        &per_page=10
+        &format=json
+        &nojsoncallback=1
+        &photo_id=51169014372
+
+###
+
