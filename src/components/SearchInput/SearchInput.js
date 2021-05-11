@@ -32,6 +32,7 @@ function SearchInput({ search }) {
         className="dropdown-menu w-100"
         aria-labelledby="SearchInputDropdownBtn"
       >
+        {/* dropdown items */}
         {textSuggestions.texts.map((sugges, i) => (
           <li
             key={i}
@@ -41,6 +42,19 @@ function SearchInput({ search }) {
             {sugges}
           </li>
         ))}
+
+        {/* clear button */}
+        {textSuggestions.texts.length ? (
+          <li className="bg-white d-flex dropdown-item justify-content-end">
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              onClick={textSuggestions.clearState}
+            >
+              Clear
+            </button>
+          </li>
+        ) : null}
       </ul>
     </div>
   );

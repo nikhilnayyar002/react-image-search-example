@@ -4,6 +4,7 @@ const USER_SUGGEST = "user_suggestions";
 const INI_STATE = {
   texts: JSON.parse(localStorage.getItem(USER_SUGGEST) ?? "[]"),
   changeState: null,
+  clearState: null,
 };
 
 const TextSuggestionsContext = createContext(INI_STATE);
@@ -13,6 +14,7 @@ function TextSuggestionsContextWrap({ children }) {
   let [state, setState] = useState({
     ...INI_STATE,
     changeState: _setState,
+    clearState
   });
 
   function _setState(text) {
@@ -28,6 +30,11 @@ function TextSuggestionsContextWrap({ children }) {
       }
       return { ...state, texts };
     });
+  }
+
+  function clearState() {
+    setState((state) => ({ ...state, texts: [] }));
+    localStorage.setItem(USER_SUGGEST, JSON.stringify([]));
   }
 
   return (
