@@ -1,20 +1,20 @@
 import { TextSuggestionsContext } from "components/other/TextSuggestionsContextWrap/TextSuggestionsContextWrap";
 import { useCallback, useContext, useRef } from "react";
 import "./SearchInput.css";
+import { useSearchText } from "services/app.service";
 
-function SearchInput({ search }) {
+function SearchInput() {
   const textSuggestions = useContext(TextSuggestionsContext);
+  const [search] = useSearchText();
 
   const inputRef = useRef(null);
-
-  const searchT = useCallback((text) => search(text), [search]);
 
   const onDropdownItemClick = useCallback(
     (sugges) => {
       inputRef.current.value = sugges;
-      searchT(sugges);
+      search(sugges);
     },
-    [searchT]
+    [search]
   );
 
   return (
@@ -24,7 +24,7 @@ function SearchInput({ search }) {
         type="text"
         className="form-control"
         placeholder="Search .."
-        onInput={(e) => searchT(e.target.value.trim())}
+        onInput={(e) => search(e.target.value.trim())}
         id="SearchInputDropdownBtn"
         data-bs-toggle="dropdown"
       />

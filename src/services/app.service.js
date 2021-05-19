@@ -3,12 +3,15 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { TextSuggestionsContext } from "components/other/TextSuggestionsContextWrap/TextSuggestionsContextWrap";
+import { SearchTextContext } from "components/other/SearchTextContextWrap/SearchTextContextWrap";
 
 //return images and loading state and also on scroll return new images concatinated with old one
-export function useGetImagesOnScroll(text) {
+export function useGetImagesOnScroll() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const pageRef = useRef(1);
+  
+  const { text } = useContext(SearchTextContext);
 
   useEffect(() => {
     let discardResults = false, //discard the result if useeffect is rerun whenever its dependency changes
@@ -60,12 +63,14 @@ export function useGetImagesOnScroll(text) {
 }
 
 // set latest text after certain interval of time to avoid calling api unneccessarily
-export function useSearchText(setText) {
+export function useSearchText() {
   const searchTermsC = useRef(new Subject());
 
-  const search = useCallback((text) => searchTermsC.current.next(text), []);
-
   const textSuggestions = useContext(TextSuggestionsContext);
+  const { setText } = useContext(SearchTextContext);
+
+  // callback to return
+  const search = useCallback((text) => searchTermsC.current.next(text), []);
 
   useEffect(() => {
     let subs = searchTermsC.current
