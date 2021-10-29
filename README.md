@@ -1,8 +1,6 @@
 # Getting Started with Create React App
 
 
-Live Link: https://my-test-app-002.web.app/
-
 ![2021-05-11_191758](https://user-images.githubusercontent.com/38173563/117826514-d5152e00-b28d-11eb-89e2-7eaf7c9196c0.jpg)
 
 
